@@ -1,0 +1,526 @@
+WindowManager:
+    MyClockWidget:
+    System_Messages:
+    Add_Season_Box:
+    Add_User:
+
+
+#:import math math
+
+
+[ClockNumber@Label]:
+    text: str(ctx.i)
+    pos_hint: {"center_x": 0.5+0.42*math.sin(math.pi/6*(ctx.i-12)), "center_y": 0.5+0.42*math.cos(math.pi/6*(ctx.i-12))}
+    font_size: self.height/16
+
+<MyClockWidget>:
+    on_enter:
+    name: "main"
+    face: face
+    ticks: ticks
+    FloatLayout:
+        id: face
+        size_hint: None, None
+        pos_hint: {"center_x":0.5, "center_y":0.6}
+        size: 0.4*min(root.size), 0.4*min(root.size)
+        canvas:
+            Color:
+                rgb: 0.05,0.05,0.05
+            Ellipse:
+                size: self.size
+                pos: self.pos
+        ClockNumber:
+            i: 1
+        ClockNumber:
+            i: 2
+        ClockNumber:
+            i: 3
+        ClockNumber:
+            i: 4
+        ClockNumber:
+            i: 5
+        ClockNumber:
+            i: 6
+        ClockNumber:
+            i: 7
+        ClockNumber:
+            i: 8
+        ClockNumber:
+            i: 9
+        ClockNumber:
+            i: 10
+        ClockNumber:
+            i: 11
+        ClockNumber:
+            i: 12
+    Ticks:
+        id: ticks
+        r: min(root.size)*0.4/2
+        pos_hint: {'center_x': 0.5,'center_y': 0.6}
+    MDFloatLayout:
+        md_bg_color: "#262626"
+        size_hint: 0.15,0.9
+        pos_hint: {'center_x': 0.09,'center_y': 0.5}
+        radius: 25
+
+####################BUTTON############################################
+
+        MDRectangleFlatIconButton
+            id:button_text
+            icon: "account"
+            text: "Add User"
+            pos_hint: {'center_x': 0.5,'center_y': 0.85}
+            text_color: "white"
+            line_color: 0,0,0,0
+            on_release: root.manager.current = "Add_User"
+
+####################BUTTON############################################
+
+        MDRectangleFlatIconButton:
+            id:button2_text
+            icon: "chart-line"
+            text: "Reports"
+            pos_hint: {'center_x': 0.5,'center_y': 0.75}
+            text_color: "white"
+            line_color: 0,0,0,0
+            on_release: root.print_time(button2_text.text)
+
+####################BUTTON############################################
+
+        MDRectangleFlatIconButton:
+            id:button3_text
+            icon: "credit-card-outline"
+            text: "Payments"
+            pos_hint: {'center_x': 0.5,'center_y': 0.65}
+            text_color: "white"
+            line_color: 0,0,0,0
+            on_release: root.print_time(button3_text.text)
+
+####################BUTTON############################################
+
+        MDRectangleFlatIconButton:
+            id:button4_text
+            icon: "message"
+            text: "Send Update Message"
+            pos_hint: {'center_x': 0.5,'center_y': 0.55}
+            text_color: "white"
+            line_color: 0,0,0,0
+            on_release: root.manager.current = "System_Messages"
+
+####################BUTTON############################################
+
+        MDRectangleFlatIconButton:
+            icon: "apps-box"
+            text: "Add Season Box"
+            pos_hint: {'center_x': 0.5,'center_y': 0.45}
+            text_color: "white"
+            line_color: 0,0,0,0
+            on_release: root.manager.current = "add_season_box"
+
+####################BUTTON############################################
+
+        MDRectangleFlatIconButton:
+            icon: "printer"
+            text: "Print Receipt"
+            pos_hint: {'center_x': 0.5,'center_y': 0.35}
+            text_color: "white"
+            line_color: 0,0,0,0
+
+####################BUTTON############################################
+
+        MDRectangleFlatIconButton:
+            icon: "send"
+            text: "Send Updates"
+            pos_hint: {'center_x': 0.5,'center_y': 0.25}
+            text_color: "white"
+            line_color: 0,0,0,0
+
+####################BUTTON############################################
+
+        MDRectangleFlatIconButton:
+            icon: "send"
+            text: "Print Checks"
+            pos_hint: {'center_x': 0.5,'center_y': 0.15}
+            text_color: "white"
+            line_color: 0,0,0,0
+
+
+####################LABEL############################################
+    MDLabel:
+        text: "Running Admin Panel Version: 1.0.0.1"
+        halign: "center"
+        pos_hint: {'center_x': 0.5,'center_y': 0.97}
+
+####################LABEL############################################
+    MDLabel:
+        text: "Admin Panel"
+        halign: "center"
+        pos_hint: {'center_x': 0.5,'center_y': 0.9}
+        font_size: "40sp"
+        bold: True
+
+####################LABEL############################################
+
+    MDLabel:
+        text: "Signed In As Sam Weiss"
+        halign: "center"
+        pos_hint: {'center_x': 0.5,'center_y': 0.83}
+        font_size: "30sp"
+
+####################LABEL############################################
+
+
+    MDLabel:
+        id: timeanddate
+        text: ""
+        halign: "center"
+        pos_hint: {'center_x': 0.5,'center_y': 0.35}
+        font_size: "25sp"
+
+
+####################LABEL############################################
+
+    MDLabel:
+        text: "User's Clocked In"
+        halign: "center"
+        pos_hint: {'center_x': 0.35,'center_y': 0.3}
+        font_size: "30sp"
+
+####################BUTTON############################################
+
+    MDRaisedButton:
+        text: "500"
+        halign: "center"
+        pos_hint: {'center_x': 0.35,'center_y': 0.23}
+        font_size: "27sp"
+
+####################LABEL############################################
+
+    MDLabel:
+        text: "Terminal's Running"
+        halign: "center"
+        pos_hint: {'center_x': 0.65,'center_y': 0.3}
+        font_size: "30sp"
+
+####################BUTTON############################################
+
+    MDRaisedButton:
+        text: "100"
+        halign: "center"
+        pos_hint: {'center_x': 0.65,'center_y': 0.23}
+        font_size: "27sp"
+        bold: True
+
+###########################################new screen#####################################
+<System_Messages>:
+    canvas.before:
+        Color:
+            ##rgba: 52, 168, 177, 0.4
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "System_Messages"
+    Screen:
+        GridLayout:
+            cols: 2
+            rows: 4
+            name: "system_message_top_grid"
+            color: 0, 157, 145, 0.8
+            size_hint: .5, .1
+            pos_hint: {'center_x':.5, 'center_y': .7}
+            font_size: self.width/5
+
+            TextInput:
+                id: title
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Title'
+                size_hint: .3, .1
+
+
+
+
+            TextInput:
+                id: subject
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Subject'
+                size_hint: .3, .1
+                #on_text_validate: login_button.focus = True
+
+        Label:
+            text: "System Update Message Center"
+            color: 0, 157, 145, 0.8
+            size_hint: .3, .1
+            pos_hint: {'center_x':.5, 'center_y': .9}
+            font_size: self.width/5
+
+        TextInput:
+            id: message
+            size_hint: (.2, None)
+            height: 50
+            multiline: True
+            text:
+            hint_text: 'Start Typing The Message'
+            size_hint: .5, .3
+            pos_hint: {'center_x':.5, 'center_y': .5}
+            font_size: self.width/18
+
+
+        GridLayout:
+            cols: 2
+            rows: 4
+            name: "system_message_grid"
+            color: 0, 157, 145, 0.8
+            size_hint: .5, .1
+            pos_hint: {'center_x':.5, 'center_y': .2}
+            font_size: self.width/5
+
+            Button:
+                text: "Send Message"
+                color: 0,0,0,
+                on_press:app.root.current = "main"
+                on_press:root.clear_input()
+                on_press:root.send_message()
+                size_hint: .3, .1
+
+
+            Button:
+                text: "Home"
+                color: 0,0,0,
+                on_press:app.root.current = "main"
+                on_press:root.clear_input()
+                size_hint: .3, .1
+
+<Add_Season_Box>:
+    canvas.before:
+        Color:
+            ##rgba: 52, 168, 177, 0.4
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "add_season_box"
+    Screen:
+        Label:
+            text: "Add Season Box"
+            color: 0, 157, 145, 0.8
+            size_hint: .3, .1
+            pos_hint: {'center_x':.5, 'center_y': .9}
+            font_size: self.width/5
+
+        GridLayout:
+            cols: 2
+            rows: 4
+            name: "Add_s_box_layout"
+            color: 0, 157, 145, 0.8
+            size_hint: .5, .2
+            pos_hint: {'center_x':.5, 'center_y': .5}
+            font_size: self.width/5
+
+
+
+            TextInput:
+                id: user_id
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'User Id'
+                size_hint: .3, .1
+                on_text_validate: box_name.focus = True
+
+
+            TextInput:
+                id: box_name
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Box Name'
+                size_hint: .3, .1
+                on_text_validate: box_s_date.focus = True
+
+
+
+            TextInput:
+                id: box_s_date
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Box Start date'
+                size_hint: .3, .1
+                on_text_validate: box_e_date.focus = True
+
+
+
+
+            TextInput:
+                id: box_e_date
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Box End Date'
+                size_hint: .3, .1
+                on_text_validate: box_id.focus = True
+
+
+            TextInput:
+                id: box_id
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Box Id'
+                size_hint: .3, .1
+
+
+
+
+            TextInput:
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Note'
+                size_hint: .3, .1
+                #on_text_validate: login_button.focus = True
+
+
+
+
+            Button:
+                text: "Add"
+                color: 0,0,0,
+                on_press:app.root.current = "main"
+                on_press:root.clear_input()
+                on_press:root.add_box()
+                size_hint: .3, .1
+
+
+            Button:
+                text: "Home"
+                color: 0,0,0,
+                on_press:app.root.current = "main"
+                on_press:root.clear_input()
+                size_hint: .3, .1
+
+<Add_User>:
+    canvas.before:
+        Color:
+            ##rgba: 52, 168, 177, 0.4
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name:"Add_User"
+    Screen:
+        Label:
+            text: "Add User"
+            color: 0, 157, 145, 0.8
+            size_hint: .3, .1
+            pos_hint: {'center_x':.5, 'center_y': .9}
+            font_size: self.width/5
+
+        GridLayout:
+            cols: 2
+            rows: 4
+            name: "transaction_layout"
+            color: 0, 157, 145, 0.8
+            size_hint: .5, .2
+            pos_hint: {'center_x':.5, 'center_y': .5}
+            font_size: self.width/5
+
+
+
+            TextInput:
+                id: fname
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'First Name'
+                size_hint: .3, .1
+                on_text_validate: lname.focus = True
+
+
+            TextInput:
+                id: lname
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Last Name'
+                size_hint: .3, .1
+                on_text_validate: email.focus = True
+
+
+
+            TextInput:
+                id: email
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Email'
+                size_hint: .3, .1
+                on_text_validate: id.focus = True
+
+
+
+
+            TextInput:
+                id: id
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'ID Number'
+                size_hint: .3, .1
+                on_text_validate: type.focus = True
+
+
+            TextInput:
+                id: type
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'User Type'
+                size_hint: .3, .1
+
+
+
+
+            TextInput:
+                size_hint: (.2, None)
+                height: 30
+                multiline: False
+                text:
+                hint_text: 'Note'
+                size_hint: .3, .1
+                on_text_validate: login_button.focus = True
+
+
+
+
+            Button:
+                text: "Add"
+                color: 0,0,0,
+                on_press:app.root.current = "main"
+                on_press:root.clear_input()
+                on_press:root.add_user()
+                size_hint: .3, .1
+
+
+            Button:
+                text: "Home"
+                color: 0,0,0,
+                on_press:app.root.current = "main"
+                on_press:root.clear_input()
+                size_hint: .3, .1
+
